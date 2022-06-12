@@ -1,0 +1,137 @@
+.pipeline-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  overflow-y: auto;
+  height: calc(50% - 1.25rem);
+  max-height: calc(100% - 2.5rem);
+}
+
+.pipeline {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.25rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: var(--card-color);
+}
+
+.pipeline .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pipeline .header .info h3 {
+  vertical-align: top;
+  margin-bottom: 0;
+}
+
+.pipeline .header .info code {
+  margin-bottom: 0;
+}
+
+.pipeline .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pipeline .footer span {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  color: var(--muted-color);
+}
+
+.pipeline .footer p {
+  margin-bottom: 0;
+  font-weight: bolder;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.link > img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+.link > svg {
+  margin-left: 0.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.skeleton {
+  margin-top: 0.25rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  background-color: var(--card-color);
+  height: 225px !important;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.stage-container {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.stage {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.stage p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 4rem;
+  margin-bottom: 0;
+}
+
+.stage svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.pendingIcon {
+  color: var(--created-icon-color);
+}
+
+.skippedIcon {
+  color: var(--muted-color);
+}
+
+.successIcon {
+  color: var(--success-icon-color);
+}
+
+.failedIcon {
+  color: var(--failed-icon-color);
+}
+
+.runningIcon {
+  color: var(--running-icon-color);
+}

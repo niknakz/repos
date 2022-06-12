@@ -1,0 +1,65 @@
+---
+sidebar_position: 2
+---
+
+# Tutorial
+
+Let's get **up and running in less than 5 minutes**.
+
+:::warning
+
+this is still in the very early stages, proceed with caution
+
+:::
+
+## Getting Started
+
+### What you'll need
+
+- [Node.js](https://nodejs.org/en/download/) version 14 or above:
+  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+
+## Create your local build
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+clone or [fork](https://github.com/niknakz/repos/fork) this repository
+
+<Tabs>
+  <TabItem value="ssh-clone" label="Clone SSH" default>
+
+    git clone git clone git@github.com:niknakz/repos.git
+
+  </TabItem>
+  <TabItem value="http-clone" label="Clone HTTP">
+
+    git clone https://github.com/niknakz/inhouse-scrims.git
+
+  </TabItem>
+</Tabs>
+
+install dependencies and start a local dev server
+
+```bash
+npm ci
+npm start
+```
+
+open the `repos.config.ts` file
+
+uncomment the code in the return
+
+once this file is populated the app will skip the demo screen and open straight to the dashboard
+
+more docs on this soon but for now the syntax is documented with typescript in that file
+
+once you have everything set up build and serve for best performance and to enable to local search
+
+```bash
+npm run clean
+npm run build
+npm run serve
+```
+
+reference the [docusaurus docs](https://docusaurus.io/) to customize your local instance 👍

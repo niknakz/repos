@@ -1,0 +1,12 @@
+.no-content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-content svg {
+  height: 2rem;
+  width: 2rem;
+}

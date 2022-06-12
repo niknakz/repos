@@ -1,0 +1,89 @@
+---
+sidebar_position: 5
+---
+
+# Tech Stack
+
+export const TechStack = ({ children, name, link, src }) => (
+  <span
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignContent: 'center',
+      padding: '1rem',
+    }}
+  >
+    <a style={{ width: '6rem', padding: '1rem' }} href={link} alt={name}>
+      <img src={src} />
+    </a>
+    <span
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+      }}
+    >
+      <h3>{name}</h3>
+      <p>{children}</p>
+    </span>
+  </span>
+)
+
+<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+<TechStack
+  name="Docusuarus"
+  link="https://docusaurus.io/"
+  src="/img/logo.svg"
+/>
+<TechStack
+  name="React"
+  link="https://reactjs.org/"
+  src="/img/tech-stack/react.svg"
+/>
+<TechStack
+  name="React Query"
+  link="https://react-query.tanstack.com/"
+  src="/img/tech-stack/react-query.svg"
+>
+  data synchronization
+</TechStack>
+<TechStack
+  name="TypeScript"
+  link="https://www.typescriptlang.org/"
+  src="/img/tech-stack/typescript.svg"
+/>
+<TechStack
+  name="Vanilla CSS"
+  link="https://developer.mozilla.org/en-US/docs/Web/CSS"
+  src="/img/tech-stack/css3.svg"
+/>
+<TechStack
+  name="Heroicons"
+  link="https://heroicons.com/"
+  src="/img/tech-stack/heroicons.svg"
+>
+  utility icons
+</TechStack>
+<TechStack
+  name="Simple Icons"
+  link="https://simpleicons.org/"
+  src="/img/tech-stack/simpleicons.svg"
+>
+  brand icons
+</TechStack>
+<TechStack
+  name="Icons8"
+  link="https://icons8.com/"
+  src="https://upload.wikimedia.org/wikipedia/commons/4/42/Icons8_logo.svg"
+>
+  <a target="_blank" href="https://icons8.com/icon/lL6HOeUhTyfg/code">
+    Code
+  </a>{' '}
+  icon by{' '}
+  <a target="_blank" href="https://icons8.com">
+    Icons8
+  </a>
+</TechStack>
+
+</div>

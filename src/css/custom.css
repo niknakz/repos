@@ -1,0 +1,75 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #526061;
+  --ifm-color-primary-dark: #4a5657;
+  --ifm-color-primary-darker: #465252;
+  --ifm-color-primary-darkest: #394344;
+  --ifm-color-primary-light: #5a6a6b;
+  --ifm-color-primary-lighter: #5e6e70;
+  --ifm-color-primary-lightest: #6b7d7e;
+  --card-color: #f3f3f3;
+  --muted-color: #475569;
+  --created-icon-color: #c2410c;
+  --success-icon-color: #15803d;
+  --failed-icon-color: #be123c;
+  --running-icon-color: #0369a1;
+  --spinner-color: #94a3b8;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #a5b4fc;
+  --ifm-color-primary-dark: #7d92fb;
+  --ifm-color-primary-darker: #6882fa;
+  --ifm-color-primary-darkest: #2c4ff8;
+  --ifm-color-primary-light: #cdd6fd;
+  --ifm-color-primary-lighter: #e2e6fe;
+  --ifm-color-primary-lightest: #ffffff;
+  --card-color: #303846;
+  --muted-color: #a1a1aa;
+  --created-icon-color: #fbbf24;
+  --success-icon-color: #10b981;
+  --failed-icon-color: #fb7185;
+  --running-icon-color: #60a5fa;
+  --spinner-color: #64748b;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.section-header {
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.section-option {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  color: var(--muted-color);
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  margin-bottom: 0;
+}
+
+.section-header div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.section-header div span {
+  padding-right: 0.5rem;
+}
