@@ -1,0 +1,35 @@
+.wrapper {
+  overflow: hidden;
+  padding: 0.25rem;
+}
+
+.open {
+  flex: 1;
+}
+
+.locked {
+  height: inherit;
+}
+
+.header {
+  height: 2.5rem;
+  display: flex;
+  justify-content: start;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.header button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}

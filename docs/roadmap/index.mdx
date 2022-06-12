@@ -1,0 +1,114 @@
+---
+sidebar_position: 4
+---
+
+# Roadmap
+
+here's some things that are _tentatively_ planned in terms of improvements, make anything cool or fix a bug? Open a [PR](https://github.com/niknakz/repos/pulls)
+
+export const ListItem = ({ children, name, src }) => (
+  <span
+    style={{
+      display: 'flex',
+      alignContent: 'center',
+      padding: '1rem',
+    }}
+  >
+    <img src={src} style={{ width: '6rem', padding: '1rem' }} />
+    <span
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+      }}
+    >
+      <h3>{name}</h3>
+      <p>{children}</p>
+    </span>
+  </span>
+)
+
+<ListItem name="major refactor" src="/img/roadmap/under-construction.jpeg">
+  need to refactor and clean code pretty much everywhere this is currently a
+  rough POC
+</ListItem>
+<ListItem name="docs" src="/img/logo.svg">
+  docs need to be improved
+</ListItem>
+<ListItem name="TypeScript" src="/img/tech-stack/typescript.svg">
+  typescript is both used and misused in this project
+</ListItem>
+<ListItem name="testing" src="/img/roadmap/testing-library.png">
+  need to test /app
+</ListItem>
+<ListItem name="testing" src="/img/roadmap/jest.png">
+  need to test /providers
+</ListItem>
+<ListItem name="Docker" src="/img/roadmap/docker.svg">
+  ship with docker image for easier consumption
+</ListItem>
+<ListItem name="styling" src="/img/tech-stack/css3.svg">
+  only "styled" for desktop sized screens 😅
+</ListItem>
+<ListItem name="GitLab" src="/img/providers/gitlab.svg">
+  need to document and test gitlab provider
+</ListItem>
+<ListItem name="GitHub" src="/img/providers/github.svg">
+  ship with default github provider
+</ListItem>
+<ListItem name="AWS CodeCommit" src="/img/providers/aws-codecommit.svg">
+  ship with default code commit provider (this one is a hard maybe)
+</ListItem>
+<ListItem name="Webpack" src="/img/roadmap/webpack.png">
+  ideally an alias can be created for the config and fallback to demo when it
+  cant be resolved, here's what I tried
+</ListItem>
+
+```js
+plugins: [
+    async function (context, options) {
+      return {
+        name: 'repos-config-plugin',
+        configureWebpack(config, isServer, utils, content) {
+          return {
+            resolve: {
+                alias: {
+                  '@config': [path.resolve(__dirname, 'repos.config'), path.resolve(__dirname, 'demo/demo.config')],
+                  '@app': path.resolve(__dirname, 'app/')
+                }
+            },
+        };
+        },
+      };
+    },
+  ],
+```
+
+<ListItem name="accessability / ada" src="/img/roadmap/accessibility.webp">
+  current build is a hack
+</ListItem>
+
+<ListItem name="miscellaneous" src="/img/providers/question-mark.svg">
+  setup docusaurus versioning
+  <br />
+  stages component needs to be more well defined
+  <br />
+  github pages (host)
+  <br />
+  debounce toggles
+  <br />
+  semantic release
+  <br />
+  search
+  <br />
+  live jsx for components demos in docs
+  <br />
+  should consider{' '}
+  <a href="https://docusaurus.io/docs/installation#monorepos/">monorepo</a> to
+  better seperate app from docs
+  <br />
+  maybe make config generator in docs
+  <br />
+  maybe one day generic 'board' page
+</ListItem>
