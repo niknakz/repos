@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkrepos=self.webpackChunkrepos||[]).push([[493],{6800:function(e){e.exports=JSON.parse('{"title":"API","description":"API reference for dashboard","slug":"/category/api","permalink":"/docs/category/api","navigation":{"previous":{"title":"Tutorial","permalink":"/docs/tutorial"},"next":{"title":"Architecture","permalink":"/docs/api/arch"}}}')}}]);
