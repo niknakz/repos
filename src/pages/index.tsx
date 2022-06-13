@@ -40,7 +40,7 @@ function HomepageHeader({ demo }) {
 export default function Home(): JSX.Element {
   const [demo, setDemo] = useState(!!config.defaultSettings)
   return (
-    <Layout description="Description will go into a meta tag in <head />">
+    <Layout description="provider agnostic local dev dashboard">
       {!demo ? (
         <>
           <HomepageHeader demo={() => setDemo(true)} />
