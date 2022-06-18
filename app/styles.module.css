@@ -7,21 +7,6 @@
   align-items: start;
 }
 
-.demo {
-  text-align: center;
-  margin: 1rem;
-  text-transform: uppercase;
-  font-weight: bolder;
-  color: var(--ifm-color-primary);
-}
-
-.version {
-  margin-left: 2rem;
-  margin-right: 2rem;
-  color: var(--ifm-color-primary-light);
-  font-style: italic;
-}
-
 .repos {
   margin: 1rem;
   height: 80vh;

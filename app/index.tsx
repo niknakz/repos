@@ -1,10 +1,10 @@
 import React from 'react'
 // import clsx from 'clsx'
-import Link from '@docusaurus/Link'
 import styles from './styles.module.css'
-import config from '../repos.config'
-import fallbackConfig from '../demo/demo.config'
+import config from '@site/repos.config'
+import fallbackConfig from '@site/demo/demo.config'
 
+import Demo from '@site/demo/components'
 import Repos from './components/Repos'
 import MergeRequests from './components/MergeRequests'
 import Pipelines from './components/Pipelines'
@@ -60,12 +60,7 @@ function App() {
   )
   return (
     <section className={styles.features}>
-      {!config.defaultSettings && (
-        <p className={styles.demo}>
-          demo mode <span className={styles.version}>pre alpha release</span>{' '}
-          <Link to="/docs/tutorial">Get Started on localhost - 5min ⏱️</Link>
-        </p>
-      )}
+      {!config.defaultSettings && <Demo />}
       <div className={styles['site-container']}>
         <div className={styles.repos}>
           <Repos />

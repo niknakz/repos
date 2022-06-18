@@ -1,0 +1,18 @@
+.demo {
+  text-align: center;
+  margin: 1rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: var(--ifm-color-primary);
+}
+
+.demo-mode {
+  color: var(--muted-color);
+}
+
+.version {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: var(--ifm-color-primary-light);
+  font-style: italic;
+}
