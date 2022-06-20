@@ -31,7 +31,7 @@ export default async function useMRs() {
         .filter((mr) => {
           if (regex[index].length) {
             if (regex[index].includes(mr.id)) {
-              return !appDataSources[index].repos[mr.id].mrOptions.regex.some(
+              return appDataSources[index].repos[mr.id].mrOptions.regex.some(
                 (rx) => rx.test(mr.name)
               )
             } else return true
