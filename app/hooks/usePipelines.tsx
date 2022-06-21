@@ -19,6 +19,7 @@ const pipelineStatus = [
 ].reduce((o, k, i) => Object.assign(o, { [k]: i }), {})
 
 let ids = []
+let defaultBranchOverrides = []
 let providers = []
 let icons = []
 let latestFunctions = []
@@ -29,7 +30,13 @@ for (const dataSource of appDataSources) {
   const repos = dataSource.repos
   const repoKeys = Object.keys(repos)
   const repoOptions = Object.values(repos)
-  ids.push(repoKeys.filter((x, i) => !repoOptions[i]?.pipelineOptions?.mute))
+  const currIds = repoKeys.filter(
+    (x, i) => !repoOptions[i]?.pipelineOptions?.mute
+  )
+  ids.push(currIds)
+  defaultBranchOverrides.push(
+    currIds.map((id) => repos[id]?.pipelineOptions?.defaultBranch)
+  )
   providers.push(provider.name)
   icons.push(provider.iconRef)
   latestFunctions.push(provider.getLatestPipelines)
@@ -43,7 +50,16 @@ export default async function usePipelines() {
   let pipelines = []
   let res
   if (!!defaultBranchOnly)
-    res = await Promise.all(defaultBranchFunctions.map((fn, i) => fn(ids[i])))
+    res = await Promise.all(
+      defaultBranchFunctions.map((fn, i) =>
+        fn(
+          ids[i].map((id, index) => ({
+            id,
+            defaultBranchOverride: defaultBranchOverrides[i][index],
+          }))
+        )
+      )
+    )
   else res = await Promise.all(latestFunctions.map((fn, i) => fn(ids[i])))
   res.forEach((response, index) => {
     pipelines = [

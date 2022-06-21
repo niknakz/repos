@@ -45,7 +45,9 @@ type Provider = {
   getRepos: (ids: ID[]) => Promise<Repo[]>
   getMRs: (ids: ID[]) => Promise<MR[]>
   getLatestPipelines: (ids: ID[]) => Promise<Pipeline[]>
-  getDefaultBranchPipelines: (ids: ID[]) => Promise<Pipeline[]>
+  getDefaultBranchPipelines: (
+    args: { id: ID; defaultBranchOverride?: string }[]
+  ) => Promise<Pipeline[]>
 }
 
 type dataSource = {
@@ -63,6 +65,7 @@ type dataSource = {
       }
       pipelineOptions?: {
         mute?: Boolean
+        defaultBranchOverride?: string
       }
     }
   }
