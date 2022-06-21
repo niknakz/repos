@@ -3,21 +3,6 @@ import fallbackConfig from '../../demo/demo.config'
 
 const appDataSources = config.dataSources || fallbackConfig.dataSources
 
-const pipelineStatus = [
-  'FAILED',
-  'MANUAL',
-  'RUNNING',
-  'PENDING',
-  'PREPARING',
-  'CREATED',
-  'WAITING_FOR_RESOURCE',
-  'CANCELED',
-  'SKIPPED',
-  'SCHEDULED',
-  'UNKNOWN',
-  'SUCCESS',
-].reduce((o, k, i) => Object.assign(o, { [k]: i }), {})
-
 let ids = []
 let defaultBranchOverrides = []
 let providers = []
@@ -76,9 +61,5 @@ export default async function usePipelines() {
   })
   return pipelines
     .filter((x) => x.stages)
-    .sort((a, b) =>
-      pipelineStatus[a.status] - pipelineStatus[b.status] === 0
-        ? b.time.getTime() - a.time.getTime()
-        : pipelineStatus[a.status] - pipelineStatus[b.status]
-    )
+    .sort((a, b) => b.time.getTime() - a.time.getTime())
 }
