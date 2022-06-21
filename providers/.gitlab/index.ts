@@ -1,31 +1,36 @@
 import axios from 'axios'
 
-const url = 'https://gitlab.com/api/graphql'
-
 type ID = string
 
-const getRepos = async (ids: ID[]) => {
-  const res = await axios({
-    url: url,
+const useAxios = (query, variables, headers = null) => {
+  return axios({
+    url: 'https://gitlab.com/api/graphql',
     method: 'post',
     data: {
-      query: `query gitlabRepos($ids: [ID!]) {
-        projects(ids: $ids) {
-          nodes {
-            id
-            name
-            description
-            webUrl
-            avatarUrl
-            lastActivityAt
-          }
-        }
-      }`,
-      variables: {
-        ids: ids.map((id) => `gid://gitlab/Project/${id}`),
-      },
+      query,
+      variables,
     },
+    headers,
   })
+}
+
+const getRepos = async (ids: ID[]) => {
+  const query = `query gitlabRepos($ids: [ID!]) {
+    projects(ids: $ids) {
+      nodes {
+        id
+        name
+        description
+        webUrl
+        avatarUrl
+        lastActivityAt
+      }
+    }
+  }`
+  const variables = {
+    ids: ids.map((id) => `gid://gitlab/Project/${id}`),
+  }
+  const res = await useAxios(query, variables)
   const {
     data: { error, data: result },
   } = res
@@ -41,35 +46,30 @@ const getRepos = async (ids: ID[]) => {
 }
 
 const getMRs = async (ids: ID[]) => {
-  const res = await axios({
-    url: url,
-    method: 'post',
-    data: {
-      query: `query gitlabMergeRequests($ids: [ID!]) {
-        projects(ids: $ids) {
+  const query = `query gitlabMergeRequests($ids: [ID!]) {
+    projects(ids: $ids) {
+      nodes {
+        id
+        name
+        mergeRequests(state: opened) {
           nodes {
-            id
-            name
-            mergeRequests(state: opened) {
-              nodes {
-                title
-                description
-                draft
-                conflicts
-                webUrl
-                sourceBranch
-                updatedAt
-                reference
-              }
-            }
+            title
+            description
+            draft
+            conflicts
+            webUrl
+            sourceBranch
+            updatedAt
+            reference
           }
         }
-      }`,
-      variables: {
-        ids: ids.map((id) => `gid://gitlab/Project/${id}`),
-      },
-    },
-  })
+      }
+    }
+  }`
+  const variables = {
+    ids: ids.map((id) => `gid://gitlab/Project/${id}`),
+  }
+  const res = await useAxios(query, variables)
   const {
     data: { error, data: result },
   } = res
@@ -93,41 +93,36 @@ const getMRs = async (ids: ID[]) => {
 }
 
 const getLatestPipelines = async (ids: ID[]) => {
-  const res = await axios({
-    url: url,
-    method: 'post',
-    data: {
-      query: `query gitlabPipelines($ids: [ID!]) {
-        projects(ids: $ids) {
+  const query = `query gitlabPipelines($ids: [ID!]) {
+    projects(ids: $ids) {
+      nodes {
+        id
+        name
+        repository {
+          rootRef
+        }
+        pipelines(first: 1) {
           nodes {
-            id
-            name
-            repository {
-              rootRef
-            }
-            pipelines(first: 1) {
+            stages {
               nodes {
-                stages {
-                  nodes {
-                    name
-                    status
-                  }
-                }
+                name
                 status
-                updatedAt
-                commitPath
-                ref
-                path
               }
             }
-          }      
+            status
+            updatedAt
+            commitPath
+            ref
+            path
+          }
         }
-      }`,
-      variables: {
-        ids: ids.map((id) => `gid://gitlab/Project/${id}`),
-      },
-    },
-  })
+      }      
+    }
+  }`
+  const variables = {
+    ids: ids.map((id) => `gid://gitlab/Project/${id}`),
+  }
+  const res = await useAxios(query, variables)
   const {
     data: { error, data: result },
   } = res
@@ -144,71 +139,70 @@ const getLatestPipelines = async (ids: ID[]) => {
     .filter((x) => x.stages)
 }
 
-const getDefaultBranchPipelines = async (ids: ID[]) => {
-  const res = await axios({
-    url: url,
-    method: 'post',
-    data: {
-      query: `query gitlabPipelines($ids: [ID!]) {
-        projects(ids: $ids) {
-          nodes {
-            id
-            repository {
-              rootRef
-            }
-          }      
+const getDefaultBranchPipelines = async (
+  args: { id: ID; defaultBranchOverride?: string }[]
+) => {
+  const [defaultBranchOverrides, needsDefaultBranch] = args.reduce(
+    ([o, n], e) =>
+      e.defaultBranchOverride
+        ? [[...o, { id: e.id, defaultBranch: e.defaultBranchOverride }], n]
+        : [o, [...n, { id: e.id }]],
+    [[], []]
+  )
+  const defaultBranchQuery = `query gitlabDefaultBranches($ids: [ID!]) {
+    projects(ids: $ids) {
+      nodes {
+        id
+        repository {
+          rootRef
         }
-      }`,
-      variables: {
-        ids: ids.map((id) => `gid://gitlab/Project/${id}`),
-      },
-    },
-  })
+      }      
+    }
+  }`
+  const variables = {
+    ids: needsDefaultBranch.map((x) => `gid://gitlab/Project/${x.id}`),
+  }
+  const res = await useAxios(defaultBranchQuery, variables)
   const {
     data: { error, data: result },
   } = res
-  const variables = result.projects.nodes.map((x) => ({
+  const defaultBranches = result.projects.nodes.map((x) => ({
     id: x.id.replace('gid://gitlab/Project/', ''),
     defaultBranch: x.repository.rootRef,
   }))
+  const repos = [...defaultBranchOverrides, ...defaultBranches]
   const promises = []
-  variables.forEach((x) => {
-    promises.push(
-      axios({
-        url: url,
-        method: 'post',
-        data: {
-          query: `query gitlabPipelines($ids: [ID!], $ref: String) {
-            projects(ids: $ids) {
+  const query = `query gitlabDefaultBranchPipelines($ids: [ID!], $ref: String) {
+    projects(ids: $ids) {
+      nodes {
+        id
+        name
+        repository {
+          rootRef
+        }
+        pipelines(first: 1, ref: $ref) {
+          nodes {
+            stages {
               nodes {
-                id
                 name
-                repository {
-                  rootRef
-                }
-                pipelines(first: 1, ref: $ref) {
-                  nodes {
-                    stages {
-                      nodes {
-                        name
-                        status
-                      }
-                    }
-                    status
-                    updatedAt
-                    commitPath
-                    ref
-                    path
-                  }
-                }
-              }      
+                status
+              }
             }
-          }`,
-          variables: {
-            ids: [`gid://gitlab/Project/${x.id}`],
-            ref: x.defaultBranch,
-          },
-        },
+            status
+            updatedAt
+            commitPath
+            ref
+            path
+          }
+        }
+      }      
+    }
+  }`
+  repos.forEach((x) => {
+    promises.push(
+      useAxios(query, {
+        ids: [`gid://gitlab/Project/${x.id}`],
+        ref: x.defaultBranch,
       })
     )
   })
