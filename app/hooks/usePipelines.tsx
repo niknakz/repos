@@ -35,7 +35,7 @@ for (const dataSource of appDataSources) {
   )
   ids.push(currIds)
   defaultBranchOverrides.push(
-    currIds.map((id) => repos[id]?.pipelineOptions?.defaultBranch)
+    currIds.map((id) => repos[id]?.pipelineOptions?.defaultBranchOverride)
   )
   providers.push(provider.name)
   icons.push(provider.iconRef)
