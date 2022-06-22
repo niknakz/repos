@@ -1,4 +1,4 @@
-import gitlab from '../providers/.gitlab'
+import gitlab from './.gitlab'
 
 const repoOnlyProvider = (name, iconRef, repo) => {
   return {
@@ -59,11 +59,7 @@ const config = {
       repos: {
         4207231: {},
         7898047: {},
-        278964: {
-          mrOptions: {
-            mute: true,
-          },
-        },
+        278964: {},
         3472737: {},
         10582521: {},
         250833: {},
