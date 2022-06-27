@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
   title: 'repos.dev',
   tagline: 'provider agnostic local dev dashboard',
-  url: 'https://repos.dev',
-  baseUrl: '/',
+  url: 'https://niknakz.github.io/',
+  baseUrl: '/repos/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
