@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styles from './styles.module.css'
+
+import BrowserOnly from '@docusaurus/BrowserOnly'
 
 import useRepos from '../../hooks/useRepos'
 import { useQuery, useIsFetching } from 'react-query'
@@ -39,10 +41,6 @@ export function Repos() {
 
 export default function RepoContainer() {
   const isFetchingRepos = useIsFetching('repos')
-  const [mac, setMac] = useState(false)
-  useEffect(() => {
-    setMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
-  })
   return (
     <Wrapper
       locked
@@ -75,7 +73,16 @@ export default function RepoContainer() {
             </svg>{' '}
             search{' '}
             <span style={{ marginLeft: '.5rem' }}>
-              <kbd>{mac ? '⌘' : 'ctrl'}</kbd> + <kbd>f</kbd>
+              <BrowserOnly>
+                {() => (
+                  <kbd>
+                    {navigator.platform.toUpperCase().indexOf('MAC') >= 0
+                      ? '⌘'
+                      : 'ctrl'}
+                  </kbd>
+                )}
+              </BrowserOnly>{' '}
+              + <kbd>f</kbd>
             </span>
           </div>
         </div>
