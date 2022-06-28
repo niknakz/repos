@@ -86,25 +86,25 @@ type Config = {
 }
 
 const config: Config = {
-  // defaultSettings: {
-  //   mrOptions: {
-  //     open: true,
-  //     showDrafts: false,
-  //   },
-  //   pipelineOptions: {
-  //     open: true,
-  //     defaultBranchOnly: false,
-  //   },
-  // },
-  // dataSources: [
-  //   {
-  //     provider: gitlab,
-  //     repos: {
-  //       278964: {},
-  //       7898047: {},
-  //     },
-  //   },
-  // ],
+  defaultSettings: {
+    mrOptions: {
+      open: true,
+      showDrafts: false,
+    },
+    pipelineOptions: {
+      open: true,
+      defaultBranchOnly: false,
+    },
+  },
+  dataSources: [
+    {
+      provider: gitlab,
+      repos: {
+        278964: {},
+        7898047: {},
+      },
+    },
+  ],
 }
 
 export default config

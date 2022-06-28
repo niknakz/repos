@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles.module.css'
 
 import useRepos from '../../hooks/useRepos'
@@ -39,6 +39,10 @@ export function Repos() {
 
 export default function RepoContainer() {
   const isFetchingRepos = useIsFetching('repos')
+  const [mac, setMac] = useState(false)
+  useEffect(() => {
+    setMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
+  })
   return (
     <Wrapper
       locked
@@ -71,12 +75,7 @@ export default function RepoContainer() {
             </svg>{' '}
             search{' '}
             <span style={{ marginLeft: '.5rem' }}>
-              <kbd>
-                {navigator.platform.toUpperCase().indexOf('MAC') >= 0
-                  ? '⌘'
-                  : 'ctrl'}
-              </kbd>{' '}
-              + <kbd>f</kbd>
+              <kbd>{mac ? '⌘' : 'ctrl'}</kbd> + <kbd>f</kbd>
             </span>
           </div>
         </div>
