@@ -30,8 +30,8 @@ export function MergeRequests({ showDrafts }) {
     mrs = data.filter((x) => !x.draft)
   }
 
-  if (data.length === 0) {
-    return <Empty text="no open merge requests" />
+  if (mrs.length === 0) {
+    return <Empty text={`no ${showDrafts ? '' : 'open'} merge requests`} />
   }
 
   return (
