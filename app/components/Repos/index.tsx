@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './styles.module.css'
 
+import BrowserOnly from '@docusaurus/BrowserOnly'
+
 import useRepos from '../../hooks/useRepos'
 import { useQuery, useIsFetching } from 'react-query'
 
@@ -71,11 +73,15 @@ export default function RepoContainer() {
             </svg>{' '}
             search{' '}
             <span style={{ marginLeft: '.5rem' }}>
-              <kbd>
-                {navigator.platform.toUpperCase().indexOf('MAC') >= 0
-                  ? '⌘'
-                  : 'ctrl'}
-              </kbd>{' '}
+              <BrowserOnly>
+                {() => (
+                  <kbd>
+                    {navigator.platform.toUpperCase().indexOf('MAC') >= 0
+                      ? '⌘'
+                      : 'ctrl'}
+                  </kbd>
+                )}
+              </BrowserOnly>{' '}
               + <kbd>f</kbd>
             </span>
           </div>
