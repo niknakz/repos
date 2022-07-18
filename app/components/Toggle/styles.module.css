@@ -1,11 +1,15 @@
 .selected {
   color: var(--ifm-color-primary) !important;
-  text-shadow: 0 0 8px var(--ifm-color-primary);
+  text-shadow: 0 0 12px var(--ifm-color-primary-lightest);
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
   font-weight: bolder;
+}
+
+[data-theme='dark'] .selected {
+  text-shadow: none;
 }
 
 .not-selected {
