@@ -58,6 +58,8 @@
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
+  font-weight: bold;
+  cursor: default;
 }
 
 .section-header h2 {

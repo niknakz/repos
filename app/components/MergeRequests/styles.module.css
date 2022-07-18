@@ -1,7 +1,9 @@
 .mr-container {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  align-content: flex-start;
   flex-grow: 1;
+  gap: 0.25rem;
   overflow: hidden;
   overflow-y: auto;
   height: calc(50% - 1.25rem);
@@ -10,13 +12,24 @@
 
 .mr {
   display: flex;
+  flex: 1 1 0px;
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  margin-top: 0.25rem;
+  min-width: 400px;
   border-radius: 0.25rem;
   padding: 0.5rem;
   background-color: var(--card-color);
+}
+
+.skeleton {
+  flex: 1 1 0px;
+  min-width: 400px;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  background-color: var(--card-color);
+  height: 225px !important;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .mr .header {
@@ -24,12 +37,17 @@
   justify-content: space-between;
 }
 
+.mr .header .info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .mr .header .info h3 {
   vertical-align: top;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 30rem;
   margin-bottom: 0;
 }
 
@@ -100,15 +118,6 @@
   margin-left: 0.25rem;
   height: 1.25rem;
   width: 1.25rem;
-}
-
-.skeleton {
-  margin-top: 0.25rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-  background-color: var(--card-color);
-  height: 225px !important;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes pulse {

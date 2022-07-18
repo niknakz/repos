@@ -16,7 +16,7 @@ export function MergeRequests({ showDrafts }) {
   if (isLoading)
     return (
       <div className={styles['mr-container']}>
-        {Array(5)
+        {Array(4)
           .fill(null)
           .map((x, i) => (
             <div key={i} className={styles.skeleton} />
@@ -26,12 +26,14 @@ export function MergeRequests({ showDrafts }) {
 
   let mrs = data
 
-  if (!showDrafts) {
+  if (showDrafts) {
+    mrs = data.filter((x) => x.draft)
+  } else {
     mrs = data.filter((x) => !x.draft)
   }
 
   if (mrs.length === 0) {
-    return <Empty text={`no ${showDrafts ? '' : 'open'} merge requests`} />
+    return <Empty text={`no ${showDrafts ? 'draft' : 'open'} merge requests`} />
   }
 
   return (
@@ -74,10 +76,11 @@ export default function MergeRequestContainer() {
             {isFetchingMRs ? <Spinner /> : null}
           </div>
           <div>
-            <span className="section-option">show drafts</span>
             <Toggle
               disabled={!open}
-              checked={!!showDrafts}
+              checkedLabel="open"
+              uncheckedLabel="drafts"
+              checked={!showDrafts}
               onChange={toggleShowDrafts}
               id="toggle-draft-mr"
             />

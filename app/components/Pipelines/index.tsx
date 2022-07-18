@@ -72,10 +72,11 @@ export default function PipelineContainer() {
             {isFetchingPipelines ? <Spinner /> : null}
           </div>
           <div>
-            <span className="section-option">default branch only</span>
             <Toggle
               disabled={!open}
-              checked={!!defaultBranchOnly}
+              checkedLabel="latest"
+              uncheckedLabel="default branch"
+              checked={!defaultBranchOnly}
               onChange={togglePipeline}
               id="toggle-default-branch"
             />

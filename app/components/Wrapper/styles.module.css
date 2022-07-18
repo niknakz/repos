@@ -26,6 +26,9 @@
 .header button {
   background-color: transparent;
   border: none;
+}
+
+.toggle {
   cursor: pointer;
 }
 

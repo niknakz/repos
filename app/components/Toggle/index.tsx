@@ -1,24 +1,46 @@
 import React from 'react'
+import clsx from 'clsx'
 import styles from './styles.module.css'
 
 type Props = {
   checked: boolean
   onChange: any
+  checkedLabel: string
+  uncheckedLabel: string
   disabled: boolean
   id: string
 }
 
 export default function Toggle(props: Props) {
   return (
-    <label htmlFor={props.id} className={styles.switch}>
-      <input
-        type="checkbox"
-        disabled={props.disabled}
-        checked={props.checked}
-        onChange={props.onChange}
-        id={props.id}
-      />
-      <span className={`${styles.slider} ${styles.round}`}></span>
-    </label>
+    <span className="section-option">
+      <button
+        className={clsx(
+          props.checked
+            ? styles.selected
+            : props.disabled || props.checked
+            ? styles['not-selected']
+            : styles['clickable']
+        )}
+        disabled={props.disabled || props.checked}
+        onClick={props.onChange}
+      >
+        {props.checkedLabel}
+      </button>{' '}
+      |{' '}
+      <button
+        className={clsx(
+          !props.checked
+            ? styles.selected
+            : props.disabled || !props.checked
+            ? styles['not-selected']
+            : styles['clickable']
+        )}
+        disabled={props.disabled || !props.checked}
+        onClick={props.onChange}
+      >
+        {props.uncheckedLabel}
+      </button>
+    </span>
   )
 }
