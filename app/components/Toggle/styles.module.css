@@ -5,7 +5,7 @@
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 [data-theme='dark'] .selected {
@@ -18,7 +18,7 @@
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .clickable {
@@ -28,7 +28,7 @@
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .clickable:hover {

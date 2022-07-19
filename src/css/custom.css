@@ -58,7 +58,7 @@
   line-height: 1.25rem; /* 20px */
   color: var(--muted-color);
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 600;
   cursor: default;
 }
 
