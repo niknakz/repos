@@ -45,7 +45,7 @@ const selfHosted = repoOnlyProvider(
 const config = {
   defaultSettings: {
     mrOptions: {
-      open: false,
+      open: true,
       showDrafts: false,
     },
     pipelineOptions: {
