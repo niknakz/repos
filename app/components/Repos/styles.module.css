@@ -102,6 +102,7 @@
 .repo-id {
   display: flex;
   align-items: center;
+  color: var(--muted-color);
 }
 
 .repo-id > img {

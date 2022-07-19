@@ -106,6 +106,7 @@
 .link {
   display: flex;
   align-items: center;
+  color: var(--muted-color);
 }
 
 .link > img {
