@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 // import clsx from 'clsx'
 import styles from './styles.module.css'
 
@@ -39,14 +39,18 @@ export function Pipelines() {
 export default function PipelineContainer() {
   const queryClient = useQueryClient()
   const isFetchingPipelines = useIsFetching('pipelines')
-
-  const [open, setOpen] = useState(true)
+  const localOpen = localStorage.getItem('pipelinesOpen')
+  const [open, setOpen] = useState(
+    localOpen === null ? true : JSON.parse(localOpen)
+  )
   const toggleOpen = () => {
     localStorage.setItem('pipelinesOpen', JSON.stringify(!open))
     setOpen(!open)
   }
-
-  const [defaultBranchOnly, setDefaultBranchOnly] = useState(true)
+  const localDefaultBranch = localStorage.getItem('defaultBranchOnly')
+  const [defaultBranchOnly, setDefaultBranchOnly] = useState(
+    localDefaultBranch === null ? true : JSON.parse(localDefaultBranch)
+  )
   const togglePipeline = async () => {
     localStorage.setItem(
       'defaultBranchOnly',
@@ -55,11 +59,6 @@ export default function PipelineContainer() {
     setDefaultBranchOnly(!defaultBranchOnly)
     await queryClient.invalidateQueries('pipelines')
   }
-
-  useEffect(() => {
-    setOpen(JSON.parse(localStorage.getItem('pipelinesOpen')))
-    setDefaultBranchOnly(JSON.parse(localStorage.getItem('defaultBranchOnly')))
-  }, [])
 
   return (
     <Wrapper

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 
 import { useQuery, useIsFetching } from 'react-query'
@@ -44,26 +44,23 @@ export function MergeRequests({ showDrafts }) {
 }
 
 export default function MergeRequestContainer() {
-  const isFetchingMRs = useIsFetching('mergeRequests')
-
-  const [open, setOpen] = useState(false)
-
+  const localOpen = localStorage.getItem('mergeRequestsOpen')
+  const [open, setOpen] = useState(
+    localOpen === null ? true : JSON.parse(localOpen)
+  )
   const toggleOpen = () => {
     localStorage.setItem('mergeRequestsOpen', JSON.stringify(!open))
     setOpen(!open)
   }
-
-  const [showDrafts, setShowDrafts] = useState(false)
-
+  const localShowDrafts = localStorage.getItem('showDrafts')
+  const [showDrafts, setShowDrafts] = useState(
+    localShowDrafts === null ? false : JSON.parse(localShowDrafts)
+  )
   const toggleShowDrafts = () => {
     localStorage.setItem('showDrafts', JSON.stringify(!showDrafts))
     setShowDrafts(!showDrafts)
   }
-
-  useEffect(() => {
-    setOpen(JSON.parse(localStorage.getItem('mergeRequestsOpen')))
-    setShowDrafts(JSON.parse(localStorage.getItem('showDrafts')))
-  }, [])
+  const isFetchingMRs = useIsFetching('mergeRequests')
 
   return (
     <Wrapper
