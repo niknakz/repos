@@ -4,16 +4,22 @@ sidebar_position: 2
 
 # MergeRequest
 
-plan to do [interactive code editor](https://docusaurus.io/docs/markdown-features/code-blocks#interactive-code-editor) here
+code change component rendering
 
-![component](./img/mr.png)
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
-<span style={{ color: '#B266FF' }}>REPO NAME &amp; BRANCH</span>
-<br />
-<span style={{ color: '#FFB366' }}>MR TITTLE &amp; DESCRIPTION</span>
-<br />
-<span style={{ color: '#7EA6E0' }}>LINK</span>
-<br />
-<span style={{ color: '#66FFFF' }}>TIMESTAMP</span>
-<br />
-<span style={{ color: '#66FFB3' }}>MR STATUS</span>
+<ThemedImage
+  alt="component"
+  sources={{
+    light: useBaseUrl('img/components/mr.png'),
+    dark: useBaseUrl('img/components/mr-dark.png'),
+  }}
+/>
+
+1. repository name _(overridable)_
+1. branch name
+1. merge request tittle & description
+1. last updated time
+1. merge request status
+1. link to code change in git provider

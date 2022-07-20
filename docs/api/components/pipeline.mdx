@@ -4,17 +4,22 @@ sidebar_position: 3
 
 # Pipeline
 
-plan to do [interactive code editor](https://docusaurus.io/docs/markdown-features/code-blocks#interactive-code-editor) here
+ci/cd component rendering
 
-![component](./img/pipeline.png)
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
-<span style={{ color: '#B266FF' }}>REPO NAME & BRANCH</span>
-<br />
-<span style={{ color: '#7EA6E0' }}>LINK</span>
-<br />
-<span style={{ color: '#FFB366' }}>PIPELINE STAGES</span>
-<br />
-<span style={{ color: '#66FFFF' }}>TIMESTAMP</span>
-<br />
-<span style={{ color: '#66FFB3' }}>PIPELINE STATUS</span>
-<br />
+<ThemedImage
+  alt="component"
+  sources={{
+    light: useBaseUrl('img/components/cicd.png'),
+    dark: useBaseUrl('img/components/cicd-dark.png'),
+  }}
+/>
+
+1. repository name _(overridable)_
+1. branch name
+1. stage summary
+1. last updated time
+1. pipeline status
+1. link to pipeline in git provider

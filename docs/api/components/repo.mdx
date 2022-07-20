@@ -4,14 +4,21 @@ sidebar_position: 1
 
 # Repo
 
-plan to do [interactive code editor](https://docusaurus.io/docs/markdown-features/code-blocks#interactive-code-editor) here
+repo component rendering
 
-![component](./img/repo.png)
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
-<span style={{ color: '#FF66B3' }}>AVATAR</span>
-<br />
-<span style={{ color: '#B266FF' }}>NAME & DESCRIPTION</span>
-<br />
-<span style={{ color: '#7EA6E0' }}>LINK</span>
-<br />
-<span style={{ color: '#66FFFF' }}>TIMESTAMP</span>
+<ThemedImage
+  alt="component"
+  sources={{
+    light: useBaseUrl('img/components/repo.png'),
+    dark: useBaseUrl('img/components/repo-dark.png'),
+  }}
+/>
+
+1. repository name _(overridable)_
+1. repository description _(overridable)_
+1. repository avatar _(overridable)_
+1. last updated time
+1. link to repo in git provider
